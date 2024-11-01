@@ -11,9 +11,6 @@ namespace EventService.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Event>()
-                .Property(e => e.Fee)
-                .HasPrecision(2, 2);
 
         }
     }
