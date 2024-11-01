@@ -11,6 +11,9 @@ builder.Services.AddDbContext<EventDbContext>(options =>
 // Add services to the container.
 builder.Services.AddScoped<IEventsService, EventsService>();
 
+// Register AutoMapper
+builder.Services.AddAutoMapper(typeof(Program));
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
