@@ -9,7 +9,7 @@ namespace EventService.Mapping
         public MappingProfile() 
         {
             CreateMap<Event, EventDto>();
-            CreateMap<EventDto, EventDto>();
+            CreateMap<EventDto, Event>();
         }
     }
 }
