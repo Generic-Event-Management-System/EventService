@@ -29,18 +29,18 @@ namespace EventService.Services
             return eventDto;
         }
 
-        public async Task<IEnumerable<EventDto>> GetEvents()
+        public async Task<IEnumerable<Event>> GetEvents()
         {
             var eventEntities = await _eventDbContext.Events.ToListAsync();
 
-            return _mapper.Map<IEnumerable<EventDto>>(eventEntities);
+            return eventEntities;
         }
 
-        public async Task<EventDto> GetEvent(int eventId)
+        public async Task<Event> GetEvent(int eventId)
         {
             var eventEntity = await _eventDbContext.Events.FirstOrDefaultAsync(e => e.Id == eventId);
 
-            return _mapper.Map<EventDto>(eventEntity);
+            return eventEntity;
         }
     }
 }

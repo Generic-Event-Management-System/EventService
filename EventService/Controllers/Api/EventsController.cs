@@ -28,10 +28,10 @@ namespace EventService.Controllers.Api
             return Ok( await _eventsService.GetEvents());
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetEvent(int eventId)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetEvent(int id)
         {
-            return Ok( await _eventsService.GetEvent(eventId));
+            return Ok( await _eventsService.GetEvent(id));
         }
     }
 }
