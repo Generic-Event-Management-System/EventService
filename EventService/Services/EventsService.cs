@@ -19,7 +19,7 @@ namespace EventService.Services
             _mapper = mapper;
         }
 
-        public async Task<EventDto> CreateEvent(EventDto eventDto)
+        public async Task<Event> CreateEvent(EventDto eventDto)
         {
             var eventEntity = _mapper.Map<Event>(eventDto);
 
@@ -27,7 +27,7 @@ namespace EventService.Services
 
             await _eventDbContext.SaveChangesAsync();
 
-            return eventDto;
+            return eventEntity;
         }
 
         public async Task<IEnumerable<Event>> GetEvents()
@@ -42,7 +42,7 @@ namespace EventService.Services
             return await GetEventOrThrowNotFound(eventId);
         }
 
-        public async Task<EventDto> UpdateEvent(int eventId, EventDto eventDto)
+        public async Task<Event> UpdateEvent(int eventId, EventDto eventDto)
         {
             var eventEntity = await GetEventOrThrowNotFound(eventId);
 
@@ -50,7 +50,7 @@ namespace EventService.Services
 
             await _eventDbContext.SaveChangesAsync();
 
-            return _mapper.Map<EventDto>(eventEntity);
+            return eventEntity;
         }
 
         public async Task DeleteEvent(int eventId)
