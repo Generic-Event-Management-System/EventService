@@ -39,28 +39,28 @@ namespace EventService.Services
 
         public async Task<Event> GetEvent(int eventId)
         {
+            return await GetEventOrThrowNotFound(eventId);
+        }
+
+        public async Task<EventDto> UpdateEvent(int eventId, EventDto eventDto)
+        {
+            var eventEntity = await GetEventOrThrowNotFound(eventId);
+
+            _mapper.Map(eventDto, eventEntity);
+
+            await _eventDbContext.SaveChangesAsync();
+
+            return _mapper.Map<EventDto>(eventEntity);
+        }
+
+        private async Task<Event> GetEventOrThrowNotFound(int eventId)
+        {
             var eventEntity = await _eventDbContext.Events.FirstOrDefaultAsync(e => e.Id == eventId);
 
             if (eventEntity == null)
                 throw new NotFoundException("No events found.");
 
             return eventEntity;
-        }
-
-        public async Task<EventDto> UpdateEvent(int eventId, EventDto eventDto)
-        {
-            var eventEntity = await _eventDbContext.Events.FirstOrDefaultAsync(e => e.Id == eventId);
-
-            if (eventEntity != null) 
-            {
-                _mapper.Map(eventDto, eventEntity);
-
-                await _eventDbContext.SaveChangesAsync();
-
-                return _mapper.Map<EventDto>(eventEntity);
-
-            }else
-                throw new NotFoundException("No events found.");
         }
     }
 }
