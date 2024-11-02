@@ -3,6 +3,7 @@ using EventService.Models.Dto;
 using EventService.Models.Entities;
 using EventService.Persistence;
 using EventService.Services.Contracts;
+using Microsoft.EntityFrameworkCore;
 
 namespace EventService.Services
 {
@@ -26,6 +27,20 @@ namespace EventService.Services
             await _eventDbContext.SaveChangesAsync();
 
             return eventDto;
+        }
+
+        public async Task<IEnumerable<EventDto>> GetEvents()
+        {
+            var eventEntities = await _eventDbContext.Events.ToListAsync();
+
+            return _mapper.Map<IEnumerable<EventDto>>(eventEntities);
+        }
+
+        public async Task<EventDto> GetEvent(int eventId)
+        {
+            var eventEntity = await _eventDbContext.Events.FirstOrDefaultAsync(e => e.Id == eventId);
+
+            return _mapper.Map<EventDto>(eventEntity);
         }
     }
 }

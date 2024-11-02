@@ -21,5 +21,17 @@ namespace EventService.Controllers.Api
         {
             return Ok( await _eventsService.CreateEvent(eventDto));
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetEventList()
+        {
+            return Ok( await _eventsService.GetEvents());
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetEvent(int eventId)
+        {
+            return Ok( await _eventsService.GetEvent(eventId));
+        }
     }
 }
