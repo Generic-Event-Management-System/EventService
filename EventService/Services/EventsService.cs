@@ -41,6 +41,9 @@ namespace EventService.Services
         {
             var eventEntity = await _eventDbContext.Events.FirstOrDefaultAsync(e => e.Id == eventId);
 
+            if (eventEntity == null)
+                throw new NotFoundException("No events found.");
+
             return eventEntity;
         }
 
