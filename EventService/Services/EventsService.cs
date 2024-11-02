@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using EventService.ExceptionHandling;
 using EventService.Models.Dto;
 using EventService.Models.Entities;
 using EventService.Persistence;
@@ -41,6 +42,22 @@ namespace EventService.Services
             var eventEntity = await _eventDbContext.Events.FirstOrDefaultAsync(e => e.Id == eventId);
 
             return eventEntity;
+        }
+
+        public async Task<EventDto> UpdateEvent(int eventId, EventDto eventDto)
+        {
+            var eventEntity = await _eventDbContext.Events.FirstOrDefaultAsync(e => e.Id == eventId);
+
+            if (eventEntity != null) 
+            {
+                _mapper.Map(eventDto, eventEntity);
+
+                await _eventDbContext.SaveChangesAsync();
+
+                return _mapper.Map<EventDto>(eventEntity);
+
+            }else
+                throw new NotFoundException("No events found.");
         }
     }
 }

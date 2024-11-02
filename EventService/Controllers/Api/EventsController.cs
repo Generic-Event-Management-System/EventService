@@ -33,5 +33,11 @@ namespace EventService.Controllers.Api
         {
             return Ok( await _eventsService.GetEvent(id));
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateEvent(int id, EventDto eventDto)
+        {
+            return Ok(await _eventsService.UpdateEvent(id, eventDto));
+        }
     }
 }
