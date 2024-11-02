@@ -39,5 +39,12 @@ namespace EventService.Controllers.Api
         {
             return Ok(await _eventsService.UpdateEvent(id, eventDto));
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteEvent(int id)
+        {
+            await _eventsService.DeleteEvent(id);
+            return NoContent();
+        }
     }
 }

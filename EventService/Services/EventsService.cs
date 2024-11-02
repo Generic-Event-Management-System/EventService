@@ -53,6 +53,15 @@ namespace EventService.Services
             return _mapper.Map<EventDto>(eventEntity);
         }
 
+        public async Task DeleteEvent(int eventId)
+        {
+            var eventEntity = await GetEventOrThrowNotFound(eventId);
+
+            _eventDbContext.Remove(eventEntity);
+
+            await _eventDbContext.SaveChangesAsync();
+        }
+
         private async Task<Event> GetEventOrThrowNotFound(int eventId)
         {
             var eventEntity = await _eventDbContext.Events.FirstOrDefaultAsync(e => e.Id == eventId);

@@ -9,5 +9,6 @@ namespace EventService.Services.Contracts
         Task<IEnumerable<Event>> GetEvents();
         Task<Event> GetEvent(int eventId);
         Task<EventDto> UpdateEvent(int eventId, EventDto eventDto);
+        Task DeleteEvent(int eventId);
     }
 }
