@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using EventService.ExceptionHandling;
 using EventService.Models.Dto;
 using EventService.Models.Entities;
 using EventService.Persistence;
 using EventService.Services.Contracts;
 using Microsoft.EntityFrameworkCore;
+using SharedUtilities.CustomExceptions;
 
 namespace EventService.Services
 {

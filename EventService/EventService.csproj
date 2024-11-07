@@ -21,4 +21,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.9.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="SharedUtilities">
+      <HintPath>..\..\libs\SharedUtilities.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

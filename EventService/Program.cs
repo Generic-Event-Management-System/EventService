@@ -1,8 +1,8 @@
-using EventService.ExceptionHandling;
 using EventService.Persistence;
 using EventService.Services;
 using EventService.Services.Contracts;
 using Microsoft.EntityFrameworkCore;
+using SharedUtilities.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
